@@ -7,50 +7,74 @@ import base64
 import re
 import datetime
 from urllib.parse import urlparse
+from threading import Thread
+from flask import Flask
 
-# --- START OF FILE دعمكم.py ---
+app = Flask('')
 
-Token = "6763Fq6Km2CLqyJazeH60M5rIBKvzPdrZoOk"  # توكنك
-admin = 7002964  # ايديك
+@app.route('/')
+def home():
+    return "Bot is Running!"
+
+def run():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+Token = os.getenv("BOT_TOKEN") 
+admin = int(os.getenv("ADMIN_ID")) if os.getenv("ADMIN_ID") else 0
 API_KEY = Token
 
 def bot(method, datas={}):
+    if not API_KEY: return {"ok": False}
     Saied_Botate = f"https://api.telegram.org/bot{API_KEY}/{method}"
-    saied_botate = None
     if datas:
         boundary = '----WebKitFormBoundary' + ''.join(random.sample('0123456789abcdef', 16))
         saied_botate = buildMultipartData(datas, boundary)
         headers = {'Content-Type': f'multipart/form-data; boundary={boundary}'}
         try:
             response = requests.post(Saied_Botate, data=saied_botate, headers=headers)
-            response.raise_for_status()
             return response.json()
-        except requests.exceptions.RequestException as e:
-            return {"error": str(e)}
+        except: return {"ok": False}
     else:
         try:
             response = requests.get(Saied_Botate)
-            response.raise_for_status()
             return response.json()
-        except requests.exceptions.RequestException as e:
-            return {"error": str(e)}
+        except: return {"ok": False}
 
 def buildMultipartData(data, boundary):
     SaiedData = []
     for key, value in data.items():
-        if isinstance(value, tuple) and len(value) == 3:  # (filename, content, mimetype)
-            SaiedData.append(f"--{boundary}")
-            SaiedData.append(f'Content-Disposition: form-data; name="{key}"; filename="{value[0]}"')
-            SaiedData.append(f'Content-Type: {value[2]}')
+        SaiedData.append(f'--{boundary}')
+        if isinstance(value, tuple):
+            filename, content = value
+            SaiedData.append(f'Content-Disposition: form-data; name="{key}"; filename="{filename}"')
+            SaiedData.append('Content-Type: application/octet-stream')
             SaiedData.append('')
-            SaiedData.append(value[1])
+            SaiedData.append(content if isinstance(content, str) else content.decode('utf-8'))
         else:
-            SaiedData.append(f"--{boundary}")
             SaiedData.append(f'Content-Disposition: form-data; name="{key}"')
             SaiedData.append('')
             SaiedData.append(str(value))
-    SaiedData.append(f"--{boundary}--")
-    return "\r\n".join(SaiedData).encode('utf-8')
+    SaiedData.append(f'--{boundary}--')
+    SaiedData.append('')
+    return '\r\n'.join(SaiedData).encode('utf-8')
+
+def SETJSON(data):
+    with open("rshq.json", "w") as f:
+        json.dump(data, f, indent=4)
+
+def GETJSON():
+    if not os.path.exists("rshq.json"):
+        return {"coin":{}, "coinss":{}, "users":[], "admin":[admin], "ban":[], "ch":[], "msgs":{}}
+    with open("rshq.json", "r") as f:
+        return json.load(f)
+
+# --- الصق كودك الضخم بالكامل من هنا ---
+
 
 # نهاية الفاكشن وبداية لوحة الادمن
 def get_update(offset=None):
@@ -3446,16 +3470,23 @@ def process_update(update):
         SETJSON(rshq)
 
 def main():
+    # تشغيل خادم الويب المصغر في الخلفية لإبقاء البوت حياً
+    keep_alive() 
+    
+    print("البوت بدأ العمل بنظام Web Service على Render...")
     offset = None
     while True:
-        updates_response = get_update(offset)
-        if updates_response and updates_response.get('ok'):
-            updates = updates_response.get('result', [])
-            for update in updates:
-                process_update(update)
-                offset = update['update_id'] + 1
+        try:
+            updates_response = get_update(offset)
+            if updates_response and updates_response.get('ok'):
+                updates = updates_response.get('result', [])
+                for update in updates:
+                    process_update(update)
+                    offset = update['update_id'] + 1
+        except Exception as e:
+            print(f"Error: {e}")
+        
         time.sleep(1) # Polling interval
 
 if __name__ == '__main__':
     main()
-    
