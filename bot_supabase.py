@@ -154,7 +154,10 @@ def process_update(update):
 
         # تجربة رد فعل سريع (اختياري للتأكد)
         # bot('sendMessage', {'chat_id': chat_id, 'text': 'جاري المعالجة...'})
-
+    except Exception as e:
+        print(f"Error extracting IDs: {e}")
+        return
+        
     if message:
         chat_id = message['chat']['id']
         from_id = message['from']['id']
