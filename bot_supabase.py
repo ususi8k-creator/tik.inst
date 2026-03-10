@@ -2344,8 +2344,8 @@ def process_update(update):
             [{"text": "🚀┇قسم الرشق.", "callback_data": "service"}],
             [{"text": "🤑┇ربح رصيد .", "callback_data": "linkme"}, {"text": "✅┇شحن رصيدك .", "callback_data": "buy"}],
             [{"text": "🏷┇شحن كرت .", "callback_data": "hdia"}, {"text": "🔄┇تحويل رصيد .", "callback_data": "transer"}],
-            [{"text": "☑️┇قناة البوت .", "url": f"https://t.me/{chabot}"}, {"text": "📦┇الحساب .", "callback_data": "acc"}],
-            [{"text": "📨┇الدعم الفني .", "url": "https://t.me/ABOJL"}]
+            [{"text": "☑️┇قناة البوت .", "url": "https://t.me/Qd3Qd"}, {"text": "📦┇الحساب .", "callback_data": "acc"}],
+            [{"text": "📨┇الدعم الفني .", "url": "https://t.me/E2E12"}]
         ]
     }
 
@@ -2459,7 +2459,7 @@ def process_update(update):
                 })
                 bot('sendMessage', {
                     'chat_id': chat_id,
-                    'text': f"*✅┇مرحبا بك في بوت  𓂀 كـــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+                    'text': f"*✅┇مرحبا بك في بوت  𓂀 خدمات free 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
                     'parse_mode': "markdown",
                     'reply_markup': json.dumps(RBEROO)
                 })
@@ -2482,7 +2482,7 @@ def process_update(update):
             else:
                 bot('sendMessage', {
                     'chat_id': chat_id,
-                    'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+                    'text': f"*✅┇مرحبا بك في بوت  𓂀 خدمات free 2 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
                     'parse_mode': "markdown",
                     'reply_markup': json.dumps(RBEROO)
                 })
@@ -2496,7 +2496,7 @@ def process_update(update):
             })
             bot('sendMessage', {
                 'chat_id': chat_id,
-                'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+                'text': f"*✅┇مرحبا بك في بوت  𓂀 خدمات free 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
                 'parse_mode': "markdown",
                 'reply_markup': json.dumps(RBEROO)
             })
@@ -2506,7 +2506,7 @@ def process_update(update):
     elif message and text == "/start": # General /start
         bot('sendMessage', {
             'chat_id': chat_id,
-            'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+            'text': f"*✅┇مرحبا بك في بوت  𓂀 خدمات Free 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
             'parse_mode': "markdown",
             'reply_markup': json.dumps(RBEROO)
         })
@@ -2533,7 +2533,7 @@ def process_update(update):
                 })
                 bot('sendMessage', {
                     'chat_id': chat_id,
-                    'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+                    'text': f"*✅┇مرحبا بك في بوت  𓂀 خدمات Free 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
                     'parse_mode': "markdown",
                     'reply_markup': json.dumps(RBEROO)
                 })
@@ -2553,7 +2553,7 @@ def process_update(update):
             else:
                 bot('sendMessage', {
                     'chat_id': chat_id,
-                    'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+                    'text': f"*✅┇مرحبا بك في بوت   *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
                     'parse_mode': "markdown",
                     'reply_markup': json.dumps(RBEROO)
                 })
@@ -2564,14 +2564,14 @@ def process_update(update):
             })
             bot('sendMessage', {
                 'chat_id': chat_id,
-                'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+                'text': f"*✅┇مرحبا بك في بوت 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
                 'parse_mode': "markdown",
                 'reply_markup': json.dumps(RBEROO)
             })
     elif message and text == "/start": # General /start
         bot('sendMessage', {
             'chat_id': chat_id,
-            'text': f"*✅┇مرحبا بك في بوت  𓂀 كــايــدن 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
+            'text': f"*✅┇مرحبا بك في بوت 𓂀  *\n\n⚙┇رصيدك : *{coin}*\n📺┇ايديك : `{from_id}`\n🕹┇العملة : *نقاط*\n\n*⬇️┇تحكم بالازرار عبر الاسفل* \n",
             'parse_mode': "markdown",
             'reply_markup': json.dumps(RBEROO)
         })
@@ -2581,7 +2581,7 @@ def process_update(update):
             bot('EditMessageText', {
                 'chat_id': chat_id,
                 'message_id': message_id,
-                'text': "*☑️┇يمكن شحن رصيدك في Ξ بوت  𓂀 كــايــدن 𓂀   بطرق دفع عديدة. 👇\n\n✳️ PAYEER, Perfect Money, BTC ,LTC\n✳️ Kuraimi, SabaFon ,STC ,others..\n\n✳️┇نقبل جميع طرق الدفع من اليمن،السعودية،العراق،مصر وطرق دفع عالمية اخرى.\n\n👨‍✈️┇الإدراة : @ABOJL*",
+                'text': "*☑️┇يمكن شحن رصيدك في Ξ بوت  الخدمات 𓂀   بطرق دفع عديدة. 👇\n\n✳️ PAYEER, Perfect Money, BTC ,LTC\n✳️ Kuraimi, SabaFon ,STC ,others..\n\n✳️┇نقبل جميع طرق الدفع من اليمن،السعودية،العراق،مصر وطرق دفع عالمية اخرى.\n\n👨‍✈️┇الإدراة : @E2E12*",
                 'parse_mode': "markdown",
                 'reply_markup': json.dumps({
                     'inline_keyboard': [
