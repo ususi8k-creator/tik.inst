@@ -3520,11 +3520,18 @@ def process_update(update):
         rshq.setdefault("coinss", {})[user_to_credit] = rshq.get("coinss", {}).get(user_to_credit, 0) + amount_to_credit
         SETJSON(rshq)
 
+import threading
+
 def main():
-    # تشغيل خادم الويب المصغر في الخلفية لإبقاء البوت حياً
-    keep_alive() 
+    # 1. تشغيل خادم الويب في خيط منفصل لضمان بقاء البوت حياً (Live)
+    # نستخدم threading لكي لا يتوقف الكود عند سطر Flask
+    web_thread = threading.Thread(target=keep_alive)
+    web_thread.daemon = True # لضمان إغلاق الخيط عند إغلاق البوت
+    web_thread.start()
     
-    print("البوت بدأ العمل بنظام Web Service على Render...")
+    print("--- تم تشغيل سيرفر Flask بنجاح ---")
+    print("--- البوت بدأ الآن باستقبال الرسائل من تليجرام ---")
+    
     offset = None
     while True:
         try:
@@ -3534,26 +3541,15 @@ def main():
                 for update in updates:
                     process_update(update)
                     offset = update['update_id'] + 1
-        except Exception as e:
-            print(f"Error: {e}")
+            else:
+                # إذا فشل الاتصال بتليجرام (خطأ 404 أو توكن خطأ)
+                if updates_response and not updates_response.get('ok'):
+                    print(f"تنبيه: فشل الاتصال بتليجرام. السبب: {updates_response.get('description')}")
         
-        time.sleep(1) # Polling interval
+        except Exception as e:
+            print(f"حدث خطأ في الحلقة الأساسية: {e}")
+        
+        time.sleep(1) # مدة الانتظار بين كل فحص
 
 if __name__ == '__main__':
     main()
-
-
-# ===== BOT RUN LOOP =====
-if __name__ == "__main__":
-    offset = None
-    import time
-    while True:
-        try:
-            updates = get_update(offset)
-            if updates and updates.get("ok"):
-                for update in updates["result"]:
-                    offset = update["update_id"] + 1
-                    process_update(update)
-        except Exception as e:
-            print("Runtime error:", e)
-        time.sleep(1)
