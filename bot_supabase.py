@@ -3525,7 +3525,7 @@ import threading
 def main():
     # 1. تشغيل خادم الويب في خيط منفصل لضمان بقاء البوت حياً (Live)
     # نستخدم threading لكي لا يتوقف الكود عند سطر Flask
-    web_thread = threading.Thread(target=keep_alive)
+    web_thread = Thread(target=keep_alive)
     web_thread.daemon = True # لضمان إغلاق الخيط عند إغلاق البوت
     web_thread.start()
     
