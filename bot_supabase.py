@@ -44,9 +44,11 @@ class SupabaseFile(io.StringIO):
         super().close()
 
 def open(file, mode="r", *args, **kwargs):
-    if file.endswith(".json") or file.endswith(".txt"):
+    # نضمن أن الملفات النصية والجوهرية فقط هي من تذهب لـ Supabase
+    if any(file.endswith(ext) for ext in [".json", ".txt", ".php"]):
         return SupabaseFile(file, mode)
     return __builtins__["open"](file, mode, *args, **kwargs)
+
 # ===== End Supabase Layer =====
 
 import requests
@@ -139,17 +141,19 @@ def get_update(offset=None):
         return None
 
 def process_update(update):
-    global Token, admin, API_KEY # Ensure these are accessible globally
+    global Token, admin, API_KEY
+    try:
+        message = update.get('message')
+        callback_query = update.get('callback_query')
+        
+        # استخراج المعرفات
+        chat_id = message['chat']['id'] if message else callback_query['message']['chat']['id']
+        from_id = message['from']['id'] if message else callback_query['from']['id']
 
-    message = update.get('message')
-    callback_query = update.get('callback_query')
+        print(f"--- [وصلت رسالة] من: {from_id} ---")
 
-    chat_id = None
-    from_id = None
-    name = None
-    user = None
-    message_id = None
-    text = None
+        # تجربة رد فعل سريع (اختياري للتأكد)
+        # bot('sendMessage', {'chat_id': chat_id, 'text': 'جاري المعالجة...'})
 
     if message:
         chat_id = message['chat']['id']
